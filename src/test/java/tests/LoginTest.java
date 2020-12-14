@@ -1,17 +1,16 @@
 package tests;
-
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import package1.ConfProperties;
-import pages.CityPage;
+import properties.ConfProperties;
 import pages.MainPage;
+import pages.CityPage;
 import java.util.concurrent.TimeUnit;
 
-public class SecondTest {
+public class LoginTest {
     public static MainPage mainPage;
     public static CityPage cityPage;
     public static WebDriver driver;
@@ -30,22 +29,14 @@ public class SecondTest {
     }
 
     @Test
-    public void changeCityTest() throws InterruptedException {
-        cityPage.clickChangeCity();
-        cityPage.clickKazan();
-        String city = cityPage.getCityName();
-        Assert.assertEquals(ConfProperties.getProperty("city"), city);
+    public void loginTest() throws InterruptedException {
         mainPage.clickFirstLoginBtn();
         mainPage.inputLogin(ConfProperties.getProperty("login"));
         mainPage.inputPasswd(ConfProperties.getProperty("password"));
         Thread.sleep(10000);
         mainPage.clickSecondLoginBtn();
         String user = mainPage.getUserName();
-        mainPage.clickUserMenu();
-        mainPage.clickMyProfile();
-        cityPage.clickAddress();
-        String cityInAddress = cityPage.getCityInAddress();
-        Assert.assertEquals(city, cityInAddress);
+        Assert.assertEquals(ConfProperties.getProperty("name"), user);
     }
 
     @AfterClass
