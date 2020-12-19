@@ -26,26 +26,46 @@ public class MainPage {
     private WebElement userMenu;
     @FindBy (partialLinkText = "Мой профиль")
     private WebElement myProfile;
+    @FindBy (partialLinkText = "Выйти")
+    private WebElement exit;
 
     public void inputLogin(String login) {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.name("login")));
         loginField.sendKeys(login);
     }
     public void inputPasswd(String passwd) {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.name("pass")));
         passwdField.sendKeys(passwd);
     }
     public void clickFirstLoginBtn() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("AuthPopup")));
         firstLoginBtn.click();
     }
     public void clickSecondLoginBtn() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("SignIn__action")));
         secondLoginBtn.click();
     }
     public String getUserName() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("HeaderUserName")));
         return userMenu.getText();
     }
     public void clickUserMenu() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("HeaderUserName")));
         userMenu.click();
     }
     public void clickMyProfile() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText("Мой профиль")));
         myProfile.click();
+    }
+    public void logout(){
+        userMenu.click();
+        exit.click();
     }
 }

@@ -22,11 +22,17 @@ public class CityPage {
     @FindBy(className = "delivery_address")
     private WebElement address;
     public void clickChangeCity() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("MainHeader__city")));
         city.click(); }
     public String getCityName() {
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("MainHeader__city")));
         String cityName = city.getText();
         return new String(cityName.getBytes(StandardCharsets.UTF_8)); }
     public String getDeliveryAddress(){
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.visibilityOfElementLocated(By.className("delivery_address")));
         return address.getText().split(",")[0];
     }
     public void clickCity(String city_name) {
